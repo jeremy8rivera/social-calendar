@@ -1,7 +1,7 @@
 # social_calendar
 
-##Dashboard Updates Only. Testing Specific Package interactions
---Current [fullCalender](https://fullcalendar.io/)
+## Dashboard Updates Only. Testing Specific Package interactions
+Current [fullCalender](https://fullcalendar.io/)
 
 ## Project setup
 ```
