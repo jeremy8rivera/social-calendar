@@ -9,6 +9,10 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+
+
 export default {
   name: 'Login',
   data() {
@@ -19,13 +23,25 @@ export default {
   },
   methods: {
     login() {
-      if(this.username === this.$root.$data.tempAccount.username && this.password === this.$root.$data.tempAccount.password) {
-        this.$root.$data.authenticated = true
-        this.$root.$data.username = this.username
-        this.$router.push('/dashboard')
-      } else {
-        window.alert("Wrong Username/Password!")
-      }
+
+      axios({ method: 'GET', 'url': this.$root.$data.backendAddress + '/login/' + this.username + '/' + this.password})
+      .then(result => {
+
+         if (result.data.successful) {
+           console.log(result)
+           this.$root.$data.authenticated = true
+           this.$root.$data.email = result.data.data.Item.email
+           this.$root.$data.name = result.data.data.Item.name
+
+           this.$router.push('/dashboard')
+         } else {
+           window.alert('Login failed. Please try again')
+         }
+      }, error => {
+        console.error(error)
+      })
+
+
     }
   }
 }

@@ -8,11 +8,9 @@ new Vue({
   router,
   render: h => h(App),
   data: {
-    username: '',
+    email: '',
     authenticated: false,
-    tempAccount: {
-      username: '123',
-      password: '123'
-    }
+    name: '',
+    backendAddress: 'http://localhost:3000'
   }
 }).$mount('#app')
