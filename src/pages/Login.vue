@@ -11,6 +11,7 @@
 <script>
 
 import axios from 'axios'
+import sha1 from 'sha1'
 
 export default {
   name: 'Login',
@@ -23,7 +24,7 @@ export default {
   methods: {
     login() {
 
-      axios({ method: 'GET', 'url': this.$root.$data.backendAddress + '/login/' + this.username + '/' + this.password})
+      axios({ method: 'GET', 'url': this.$root.$data.backendAddress + '/login/' + this.username + '/' + sha1(this.password)})
       .then(result => {
 
          if (result.data.successful) {

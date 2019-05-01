@@ -18,6 +18,7 @@
 <script>
 
 import axios from 'axios'
+import sha1 from 'sha1'
 
 export default {
   name: 'Signup',
@@ -36,7 +37,7 @@ export default {
           window.alert("Passwords do not match")
       } else {
         axios({ method: 'GET', 'url': this.$root.$data.backendAddress + '/signup/' + this.username + '/' 
-        + this.password1 + '/' + this.firstname + ' ' + this.lastname })
+        + sha1(this.password1) + '/' + this.firstname + ' ' + this.lastname })
         .then(result => {
           console.log(result)
           if (result.data.duplicate) {
