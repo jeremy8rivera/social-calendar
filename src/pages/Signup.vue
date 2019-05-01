@@ -1,16 +1,24 @@
 <template>
   <div>
     <input type="text" v-model="username" placeholder="Username" />
+    <br>
     <input type="text" v-model="firstname" placeholder="First Name" />
+    <br>
     <input type="text" v-model="lastname" placeholder="Last Name" />
+    <br>
     <input type="password" v-model="password1" placeholder="Password" />
+    <br>
     <input type="password" v-model="password2" placeholder="Re-enter Password" />
-    <button type="button" v-on:click="register()">Login</button>
+    <br>
+    <button type="button" v-on:click="register()">Signup</button>
     <br>
   </div>
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
   name: 'Signup',
   data() {
@@ -24,13 +32,18 @@ export default {
   },
   methods: {
     register() {
-      if(this.username === this.$root.$data.tempAccount.username) {
-          window.alert("This username exists already!")
-      } else if(!(this.password1 === this.password2)) {
+      if(!(this.password1 === this.password2)) {
           window.alert("Passwords do not match")
       } else {
-          window.alert("Successfully created account")
-          this.$router.push('login')
+        axios({ method: 'GET', 'url': this.$root.$data.backendAddress + '/signup/' + this.username + '/' 
+        + this.password1 + '/' + this.firstname + ' ' + this.lastname })
+        .then(result => {
+          console.log(result)
+          if (result.data.duplicate) {
+            window.alert('User with that username exists already')
+          }
+          this.$router.push('/login')
+        })
       }
 
     }
