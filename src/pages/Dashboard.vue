@@ -27,6 +27,11 @@ export default {
   },
   components: {
     Header
+  }, 
+  beforeMount () {
+      if (!this.$root.$data.authenticated) {
+          this.$router.push('/login')
+      }
   }
 }
 

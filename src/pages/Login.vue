@@ -24,13 +24,13 @@ export default {
   methods: {
     login() {
 
-      axios({ method: 'GET', 'url': this.$root.$data.backendAddress + '/login/' + this.username + '/' + sha1(this.password)})
+      axios({ method: 'GET', 'url': this.$root.$data.backendAddress + '/login/' + this.username.toLowerCase() + '/' + sha1(this.password)})
       .then(result => {
 
          if (result.data.successful) {
            console.log(result)
            this.$root.$data.authenticated = true
-           this.$root.$data.email = result.data.data.Item.email
+           this.$root.$data.username = result.data.data.Item.email
            this.$root.$data.name = result.data.data.Item.name
 
            this.$router.push('/dashboard')
@@ -43,6 +43,11 @@ export default {
 
 
     }
+  },
+  beforeMount () {
+    this.$root.$data.authenticated = false
+    this.$root.$data.username = '',
+    this.$root.$data.name = ''
   }
 }
 

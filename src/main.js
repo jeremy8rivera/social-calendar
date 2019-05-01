@@ -8,7 +8,7 @@ new Vue({
   router,
   render: h => h(App),
   data: {
-    email: '',
+    username: '',
     authenticated: false,
     name: '',
     backendAddress: 'http://localhost:3000'

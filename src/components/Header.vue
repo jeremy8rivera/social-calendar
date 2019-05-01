@@ -14,7 +14,7 @@ export default {
       logout() {
           this.$root.$data.authenticated = false
           this.$root.$data.username = ''
-          this.$router.push('login')
+          this.$router.push('/login')
       }
   }
 }

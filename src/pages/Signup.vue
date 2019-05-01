@@ -36,18 +36,25 @@ export default {
       if(!(this.password1 === this.password2)) {
           window.alert("Passwords do not match")
       } else {
-        axios({ method: 'GET', 'url': this.$root.$data.backendAddress + '/signup/' + this.username + '/' 
+        axios({ method: 'GET', 'url': this.$root.$data.backendAddress + '/signup/' + this.username.toLowerCase() + '/' 
         + sha1(this.password1) + '/' + this.firstname + ' ' + this.lastname })
         .then(result => {
           console.log(result)
           if (result.data.duplicate) {
             window.alert('User with that username exists already')
+          } else {
+            window.alert("Successfully created account")
+            this.$router.push('/login')
           }
-          this.$router.push('/login')
         })
       }
 
     }
+  },
+  beforeMount () {
+    this.$root.$data.authenticated = false
+    this.$root.$data.username = '',
+    this.$root.$data.name = ''
   }
 }
 
