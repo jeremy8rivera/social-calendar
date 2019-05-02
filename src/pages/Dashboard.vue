@@ -2,7 +2,7 @@
 
 <div>
     <Header></Header>
-    <div>Welcome {{ this.$root.$data.username }}</div>
+    <div>Welcome {{ this.$root.$data.name }}</div>
     <div id="calendarSelector">
         <div id="personalCalendar" class="calendarChoice">Personal</div>
         <div id="groupCalendar" class="calendarChoice">Groups</div>

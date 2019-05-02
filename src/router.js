@@ -5,6 +5,7 @@ import SignUp from './pages/Signup.vue'
 import Dashboard from './pages/Dashboard.vue'
 import Home from './Home.vue'
 import Settings from './pages/Settings.vue'
+import CreateEvent from './pages/CreateEvent.vue'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/settings',
       name: 'settings',
       component: Settings
+    },
+    {
+      path: '/createevent',
+      name: 'createevent',
+      component: CreateEvent
     }
   ]
 })
