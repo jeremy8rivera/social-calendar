@@ -5,6 +5,8 @@
     <br>
     <input type="text" v-model="event_location" placeholder="Event Location" />
     <br>
+    <input type="text" v-model="event_description" placeholder="Event Description" />
+    <br>
     <m-date-picker v-model="dates" :lang="en" :always-display="true" 
     :disp="['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','', '', '取消', '确定']"></m-date-picker>
     <br>
@@ -24,7 +26,8 @@ export default {
         return {
             dates: [],
             event_name: '',
-            event_location: ''
+            event_location: '',
+            event_description: ''
         }
     },
     methods: {
@@ -32,7 +35,7 @@ export default {
             console.log(JSON.stringify(this.dates))
             axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/createevent/' 
             + this.event_name + '/' + this.$root.$data.username + '/' + JSON.stringify(this.dates)
-            + '/' + this.event_location} )
+            + '/' + this.event_location + '/' + this.event_description } )
             .then(result => {
                 console.log(result)
                 if (result.data.successful) {
