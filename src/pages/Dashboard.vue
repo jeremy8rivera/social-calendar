@@ -43,7 +43,7 @@ export default {
   methods: {
   },
   components: {
-    Header
+    Header,
     FullCalendar
   }, 
   beforeMount () {
