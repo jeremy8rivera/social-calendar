@@ -13,6 +13,7 @@ new Vue({
     username: '',
     authenticated: false,
     name: '',
-    backendAddress: 'http://localhost:3000'
+    backendAddress: 'http://localhost:3000',
+    events: []
   }
 }).$mount('#app')

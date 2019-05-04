@@ -4,21 +4,22 @@
     <Header></Header>
     <div id="eventListContainer" class="test">
         <h2>Events</h2>
-        <div class="eventBox">
-        	<div class="eventBoxHeaders">
-        		<h3 class="eventBoxNameDate">Event Now 6:30pm</span></h3>
-        	</div>
-        		<p class="eventBoxLocation">LC400</p>
-        		<p class="eventBoxMems">ZH, CK, JR, JK</p>
+
+        <ul style="list-style: none;" id="events">
+            <li v-for="event in this.$root.$data.events">
+                {{ event.event_name }}
+                <div class="eventBox">
+                    <div class="eventBoxHeaders">
+        		        <h3 class="eventBoxNameDate">{{ event.event_time}}</span></h3>
+        	        </div>
+        		    <p class="eventBoxLocation">{{ event.event_location}}</p>
+                    <p class="eventBoxLocation">{{ event.event_description}}</p>
+
+                </div>
+            </li>
+        </ul>
+        
         </div>
-        <div class="eventBox">
-        	<div class="eventBoxHeaders">
-        		<h3 class="eventBoxNameDate">Event Now 6:30pm</span></h3>
-        	</div>
-        		<p class="eventBoxLocation">LC400</p>
-        		<p class="eventBoxMems">ZH, CK, JR, JK</p>
-        </div>
-    </div>
     <div id="visualCalendarContainer" class="test">
         <h2>{{ this.$root.$data.name }}'s Calendar</h2>
         <FullCalendar
@@ -47,6 +48,7 @@ import FullCalendar from '@fullcalendar/vue'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
+import axios from 'axios'
 
 export default {
   name: 'Dashboard',
@@ -60,6 +62,7 @@ export default {
       if (!this.$root.$data.authenticated) {
           this.$router.push('/login')
       }
+
   },
   data: function () {
     return {
@@ -145,6 +148,12 @@ h2{
     text-align: center;
 }
 
+ul{
+    list-style: none;
+    padding-left: 0;
+}​
+
+
 #eventListContainer h2{
 	border-bottom: 1px solid #d8d8d8;
 	padding-bottom: 20px;
@@ -188,6 +197,5 @@ h2{
 	font-size: 12px;
 	margin: 0;
 }
-
 
 </style>

@@ -41,6 +41,11 @@ export default {
                 console.log(result)
                 if (result.data.successful) {
                     window.alert("Successfully create event")
+
+                    axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/loadevents/' + this.$root.$data.username } )
+                    .then(result => {
+                        this.$root.$data.events = result.data.events
+                    })
                     this.$router.push('/dashboard')
                 } else {
                     window.alert("Event creation failed")
