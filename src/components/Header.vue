@@ -1,16 +1,31 @@
 <template>
     <div>
-        <button type="button" v-on:click="logout()">Logout</button>
-        <router-link to='dashboard'>Dashboard</router-link>
-        <router-link to='createevent'>Create Event</router-link>
-        <router-link to='settings'>Settings</router-link>
+        <button class="btn logout" type="button" v-on:click="logout()">Logout</button>
+        
+        <router-link to='dashboard' tag="rl" class='btn'>Dashboard</router-link>
+       
+        <router-link to='createevent' tag="rl" class='btn'>Create Event</router-link>
+        
+        <router-link to='settings' tag="rl" class='btn'>Settings</router-link>
 
     </div>
 </template>
 
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500");
+</style>
+
+<!--This is how you add css to Vue -->
+<style scoped src="../css/header.css"></style>
+
 <script>
 export default {
     name: 'Header',
+    data() {
+        return {
+            size: '24px'
+        }
+    },
     methods: {
       logout() {
           this.$root.$data.authenticated = false
