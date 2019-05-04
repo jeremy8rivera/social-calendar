@@ -1,4 +1,26 @@
 <template>
+
+<body>
+
+  <div class="login">
+    <p>Username</p>
+    <input type="text" v-model="username" placeholder="Username" required>
+    <input type="text" v-model="firstname" placeholder="First Name" />
+    <input type="text" v-model="lastname" placeholder="Last Name" />
+    <input type="password" v-model="password1" placeholder="Password" required minlength="3"/>
+    <p>The password must be > 3 char</p>
+    <input type="password" v-model="password2" placeholder="Re-enter Password" required minlength="3"/>
+    <p>The password must be > 3 char</p>
+    <!-- You also can use only one input and use "pointer-events: none;", but you still can select it using tab -->
+    
+    <!-- <input type="submit" value="Login" disabled>
+    <input type="submit" value="Login" v-on:click="login()"> -->
+    <input type="submit" value="Sign up" disabled>
+    <input type="submit" value="Sign up" v-on:click="register()">
+  </div>
+
+</body>
+<!-- 
   <div>
     <input type="text" v-model="username" placeholder="Username" />
     <br>
@@ -12,8 +34,18 @@
     <br>
     <button type="button" v-on:click="register()">Signup</button>
     <br>
-  </div>
+  </div> -->
+
 </template>
+
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500");
+</style>
+
+<style scoped src="../css/signup.css"></style>
+<!--This is how you add css to Vue -->
+
+
 
 <script>
 
