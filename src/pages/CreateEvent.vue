@@ -1,6 +1,7 @@
 <template>
 <div>
     <Header></Header>
+Event Name </br>
     <input type="text" v-model="event_name" placeholder="Event Name" />
     <br>
     <input type="text" v-model="event_location" placeholder="Event Location" />
