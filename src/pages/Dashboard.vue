@@ -2,15 +2,25 @@
 
 <div>
     <Header></Header>
-    <div id="calendarSelector">
-        <div id="personalCalendar" class="calendarChoice activeTab">Personal</div>
-        <div id="groupCalendar" class="calendarChoice">Groups</div>
-    </div>
     <div id="eventListContainer" class="test">
         <h2>Events</h2>
+        <div class="eventBox">
+        	<div class="eventBoxHeaders">
+        		<h3 class="eventBoxNameDate">Event Now 6:30pm</span></h3>
+        	</div>
+        		<p class="eventBoxLocation">LC400</p>
+        		<p class="eventBoxMems">ZH, CK, JR, JK</p>
+        </div>
+        <div class="eventBox">
+        	<div class="eventBoxHeaders">
+        		<h3 class="eventBoxNameDate">Event Now 6:30pm</span></h3>
+        	</div>
+        		<p class="eventBoxLocation">LC400</p>
+        		<p class="eventBoxMems">ZH, CK, JR, JK</p>
+        </div>
     </div>
     <div id="visualCalendarContainer" class="test">
-        <h2>{{ this.$root.$data.username }}'s Calendar</h2>
+        <h2>{{ this.$root.$data.name }}'s Calendar</h2>
         <FullCalendar
       class='visualCalendar'
       ref="fullCalendar"
@@ -18,7 +28,7 @@
       :header="{
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        right: 'dayGridMonth,timeGridWeek,listWeek'
       }"
       :plugins="calendarPlugins"
       :weekends="calendarWeekends"
@@ -82,7 +92,25 @@ export default {
 }
 
 .fc-button{
-    background-color: purple;
+    background-color: #268fff;
+}
+
+.fc-button-primary:not(:disabled).fc-button-active:focus{
+	box-shadow: 0 0 0 0;
+}
+
+.fc-button-primary:not(:disabled).fc-button-active {
+	background-color: gray;
+}
+
+.fc-button-primary:not(:disabled):focus{
+	box-shadow: 0 0 0 0;
+}
+
+.fc-button-primary:disabled{
+	background-color: gray;
+	border: 1px solid #2C3E50;
+	opacity: 1;
 }
 
 .fc-event-container{
@@ -109,12 +137,18 @@ export default {
 
 #eventListContainer{
     width: 19%;
-    height: 100px;
+    height: 100%;
     float: left;
 }
 
 h2{
     text-align: center;
+}
+
+#eventListContainer h2{
+	border-bottom: 1px solid #d8d8d8;
+	padding-bottom: 20px;
+	margin-bottom: 0px;
 }
 
 #visualCalendarContainer{
@@ -124,7 +158,7 @@ h2{
 }
 
 .test{
-    border: 1px solid black;
+    border: 1px solid #d8d8d8;
     border-radius: 5px;
     margin-top: 20px;
     border-color: #d8d8d8;
@@ -133,5 +167,27 @@ h2{
 .activeTab{
 	background-color: lightgray;
 }
+
+.eventBox{
+	border-left: 1px solid black;
+	margin-bottom: 5px;
+}
+
+.eventBoxHeaders{
+	background-color: #268fff;
+	color: white;
+}
+
+.eventBoxNameDate{
+	border-bottom: 1px solid black;
+	font-size: 14px;
+	margin: 0px;
+}
+
+.eventBox p{
+	font-size: 12px;
+	margin: 0;
+}
+
 
 </style>
