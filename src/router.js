@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard.vue'
 import Home from './Home.vue'
 import Settings from './pages/Settings.vue'
 import CreateEvent from './pages/CreateEvent.vue'
+import Schedule from './pages/Schedule.vue'
 
 Vue.use(Router)
 
@@ -41,6 +42,11 @@ export default new Router({
       path: '/createevent',
       name: 'createevent',
       component: CreateEvent
+    },
+    {
+      path: '/schedule',
+      name: 'schedule',
+      component: Schedule
     }
   ]
 })

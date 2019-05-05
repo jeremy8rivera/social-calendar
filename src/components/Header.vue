@@ -8,6 +8,7 @@
         
         <router-link to='settings' tag="rl" class='btn'>Settings</router-link>
 
+        <router-link to='schedule' tag="rl" class='btn'>Schedule</router-link>
     </div>
 </template>
 
