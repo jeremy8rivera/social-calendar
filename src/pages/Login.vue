@@ -53,6 +53,10 @@ export default {
            this.$root.$data.username = result.data.data.Item.email
            this.$root.$data.name = result.data.data.Item.name
 
+          axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/loadevents/' + this.$root.$data.username } )
+          .then(result => {
+            this.$root.$data.events = result.data.events
+          })
            this.$router.push('/dashboard')
          } else {
            window.alert('Login failed. Please try again')
