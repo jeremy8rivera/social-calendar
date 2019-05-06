@@ -60,7 +60,7 @@ export default {
                 console.log(result)
                 if (result.data.successful) {
                     window.alert("Successfully created event")
-                    this.$root.$data.events = []
+                    this.$root.$data.events = new Object()
                     axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/loadevents/' + this.$root.$data.username } )
                     .then(result => {
                         this.$root.$data.events = result.data.events

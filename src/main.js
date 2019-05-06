@@ -14,6 +14,7 @@ new Vue({
     authenticated: false,
     name: '',
     backendAddress: 'http://localhost:3000',
-    events: []
+    events: [],
+    currentEvent: null
   }
 }).$mount('#app')

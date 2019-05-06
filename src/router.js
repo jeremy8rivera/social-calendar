@@ -7,6 +7,7 @@ import Home from './Home.vue'
 import Settings from './pages/Settings.vue'
 import CreateEvent from './pages/CreateEvent.vue'
 import Schedule from './pages/Schedule.vue'
+import Event from './pages/Event.vue'
 
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ export default new Router({
       path: '/schedule',
       name: 'schedule',
       component: Schedule
+    }, 
+    {
+      path: '/event',
+      name: 'event',
+      component: Event
     }
   ]
 })

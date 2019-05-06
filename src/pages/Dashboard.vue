@@ -6,13 +6,14 @@
         <h2>Events</h2>
 
         <ul style="list-style: none;" id="events">
-            <li v-for="event in this.$root.$data.events">
+            <li v-for="(event, index) in this.$root.$data.events">
                 <div class="eventBox">
                     <div class="eventBoxHeaders">
         		        <h3 class="eventBoxNameDate">{{ event.event_name }} | {{ event.event_time}}</span></h3>
         	        </div>
         		    <p class="eventBoxLocation">{{ event.event_location}}</p>
                     <p class="eventBoxLocation">{{ event.event_description}}</p>
+                    <input type="submit" value="Go to event" v-on:click="goToEvent(index)">
 
                 </div>
             </li>
@@ -75,6 +76,13 @@ export default {
         { title: 'Event Now', start: new Date() }
         ]
     }
+  },
+  methods : {
+      goToEvent(index) {
+          this.$root.$data.currentEvent = this.$root.$data.events[index]
+          this.$router.push('/event')
+   
+      }
   }
 }
 
