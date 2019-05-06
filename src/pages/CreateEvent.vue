@@ -13,6 +13,19 @@
             <m-date-picker v-model="dates" :lang="en" :always-display="true" 
             :disp="['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','', '', '取消', '确定']"></m-date-picker>
             <br>
+
+            <div v-for="(user, index) in users">
+                <input v-model="users[index]">
+                <button v-on:click="deleteUser(index)">
+                delete
+                </button>
+            </div>
+  
+            <button v-on:click="addUser()">
+                New User
+            </button>
+            <br>
+  
             <button type="button" v-on:click="createEvent()">Create Event</button>
         </div>
         </div>
@@ -32,20 +45,22 @@ export default {
             dates: [],
             event_name: '',
             event_location: '',
-            event_description: ''
+            event_description: '',
+            users: ['']
         }
     },
     methods: {
         createEvent() {
-            console.log(JSON.stringify(this.dates))
+            var usersStr = this.users.join()
+            console.log(usersStr)
             axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/createevent/' 
             + this.event_name + '/' + this.$root.$data.username + '/' + JSON.stringify(this.dates)
-            + '/' + this.event_location + '/' + this.event_description } )
+            + '/' + this.event_location + '/' + this.event_description + '/' + usersStr } )
             .then(result => {
                 console.log(result)
                 if (result.data.successful) {
                     window.alert("Successfully created event")
-
+                    this.$root.$data.events = []
                     axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/loadevents/' + this.$root.$data.username } )
                     .then(result => {
                         this.$root.$data.events = result.data.events
@@ -55,6 +70,16 @@ export default {
                     window.alert("Event creation failed")
                 }
             })
+        },
+        addUser: function () {
+            this.users.push('');
+        },
+        deleteUser: function (index) {
+            console.log(index);
+            console.log(this.finds);
+            this.users.splice(index, 1);
+            if(index===0)
+                this.addUser()
         }
     },
     components: {

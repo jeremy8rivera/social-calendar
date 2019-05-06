@@ -7,7 +7,7 @@
 
         <ul id="times">
         <tr>
-            <td></td>
+            <td>Time</td>
             <td>Sunday</td>
             <td>Monday</td>
             <td>Tuesday</td>
