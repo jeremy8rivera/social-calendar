@@ -79,8 +79,13 @@ export default {
   },
   methods : {
       goToEvent(index) {
-          this.$root.$data.currentEvent = this.$root.$data.events[index]
-          this.$router.push('/event')
+
+        this.$root.$data.currentEvent = this.$root.$data.events[index]
+        axios( {method: 'GET', 'url': this.$root.$data.backendAddress + '/geteventschedule/' + this.$root.$data.currentEvent.event_id})
+        .then(result => {
+            this.$root.$data.currentEvent.added_schedules = result.data.addedSchedules
+            this.$router.push('/event')
+        })
    
       }
   }
