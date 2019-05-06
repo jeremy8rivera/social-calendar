@@ -1,16 +1,23 @@
 <template>
-
     <div>
         <Header></Header>
-        <h3>Update Password</h3>
-        <input type="password" v-model="password" placeholder="Enter Current Password" />
-        <input type="password" v-model="npassword1" placeholder="New Password" />
-        <input type="password" v-model="npassword2" placeholder="Re-enter New Password" />
-        <br>
-        <button type="button" v-on:click="updatePassword()">Update</button>
+        <div class="creationContainer">
 
+            <div class="popOut" id="settingPopOut">
+                <h2>Current Password:</h2>
+                <input type="password" v-model="password" placeholder="Enter Current Password" />
+                <br/>
+                <h2>New Password:</h2>
+                <input type="password" v-model="npassword1" placeholder="New Password" />
+                <br/>
+                <h2>Confirm New Password:</h2>
+                <input type="password" v-model="npassword2" placeholder="Re-enter New Password" />
+                <br>
+                <button type="button" v-on:click="updatePassword()">Update</button>
+            </div>
+
+        </div>
     </div>
-
 </template>
 
 <script>
@@ -52,3 +59,14 @@ export default {
 }
 
 </script>
+
+
+<style scoped type="text/css">
+
+#settingPopOut{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+}
+
+</style>

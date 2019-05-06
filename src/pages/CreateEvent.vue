@@ -1,19 +1,23 @@
 <template>
-<div>
-    <Header></Header>
-Event Name </br>
-    <input type="text" v-model="event_name" placeholder="Event Name" />
-    <br>
-    <input type="text" v-model="event_location" placeholder="Event Location" />
-    <br>
-    <input type="text" v-model="event_description" placeholder="Event Description" />
-    <br>
-    <m-date-picker v-model="dates" :lang="en" :always-display="true" 
-    :disp="['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','', '', '取消', '确定']"></m-date-picker>
-    <br>
-    <button type="button" v-on:click="createEvent()">Create Event</button>
+    <div>
+        <Header></Header>
+        <div class="creationContainer">
+            <div class="popOut">
+            <h2>Event Name:</h2>
+            <input type="text" v-model="event_name" placeholder="Event Name" />
+            <h2>Event Location:</h2>
+            <input type="text" v-model="event_location" placeholder="Event Location" />
+            <h2>Event Description:</h2>
+            <input type="text" v-model="event_description" placeholder="Event Description" />
+            <br>
+            <m-date-picker v-model="dates" :lang="en" :always-display="true" 
+            :disp="['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','', '', '取消', '确定']"></m-date-picker>
+            <br>
+            <button type="button" v-on:click="createEvent()">Create Event</button>
+        </div>
+        </div>
 
-</div>
+    </div>
 </template>
 
 <script>
@@ -64,3 +68,54 @@ export default {
 }
 
 </script>
+
+<style type="text/css">
+
+.creationContainer{
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+}
+
+.creationContainer h2{
+    margin-bottom: 0px;
+    font-size: 20px;
+}
+
+.container{
+    display: inline-block;
+}
+
+.container .selected-date{
+    display: inline-block;
+    text-align: center;
+}
+
+.popOut{
+    display: inline-block;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    padding: 20px;
+    padding-top: 0px;
+    background-color: white;
+    margin-top: 5px;
+}
+
+.popOut button{
+    margin-top: 5px;
+    background-color: #268fff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    width: 50%;
+    height: 30px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.popOut button:hover{
+    background-color: #2867cc;
+}
+
+
+</style>

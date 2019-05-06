@@ -7,10 +7,9 @@
 
         <ul style="list-style: none;" id="events">
             <li v-for="event in this.$root.$data.events">
-                {{ event.event_name }}
                 <div class="eventBox">
                     <div class="eventBoxHeaders">
-        		        <h3 class="eventBoxNameDate">{{ event.event_time}}</span></h3>
+        		        <h3 class="eventBoxNameDate">{{ event.event_name }} | {{ event.event_time}}</span></h3>
         	        </div>
         		    <p class="eventBoxLocation">{{ event.event_location}}</p>
                     <p class="eventBoxLocation">{{ event.event_description}}</p>
@@ -86,6 +85,10 @@ export default {
 @import '~@fullcalendar/daygrid/main.css';
 @import '~@fullcalendar/timegrid/main.css';
 
+body{
+	background-color: #639DDB;
+}
+
 .fc-past {
     background-color: lightgray;
 }
@@ -142,6 +145,7 @@ export default {
     width: 19%;
     height: 100%;
     float: left;
+    margin-top: 45px;
 }
 
 h2{
@@ -171,6 +175,7 @@ ul{
     border-radius: 5px;
     margin-top: 20px;
     border-color: #d8d8d8;
+    background-color: white;
 }
 
 .activeTab{
