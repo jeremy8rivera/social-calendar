@@ -14,20 +14,22 @@
                     {{user}}
                 </li>
                 <br>
-                <h3>Add users</h3>
-                <div v-for="(user, index) in this.users">
-                    <input v-model="users[index]">
-                    <button v-on:click="deleteUser(index)">
-                    delete
+                <h3>Add Users</h3>
+                <div class="userChange" v-for="(user, index) in this.users">
+                    <input class="usernameInput" placeholder="Enter Username Here" v-model="users[index]"> <br>
+                    <button class="deleteUser" v-on:click="deleteUser(index)">
+                    Delete
                     </button>
-                </div>
-
-                <button v-on:click="addUser()">
+                    <button class="addUser" v-on:click="addUser()">
                                 New User
                             </button>
+                            <br>
                 <button v-on:click="addUsers()">
                     Add Users
                 </button>
+                </div>
+
+                
                 <br>
                 Possible dates
                 <li v-for="date in this.$root.$data.currentEvent.event_dates">
@@ -81,6 +83,34 @@
 
     li {
         list-style-type: none;
+    }
+    .addUser {
+        background-color: #f9c422;
+        font-size: 12px;
+        font-weight: bold;
+        width: 25%;
+        margin-bottom: 10px;
+    }
+    .addUser:hover{
+        background-color: #edb407;
+    }
+
+    .deleteUser{
+        width: 25%;
+        background-color: #dc3545;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .deleteUser:hover{
+        background-color: #c91021;
+    }
+
+    .userChange{
+        margin-bottom: 10px;
+    }
+
+    .usernameInput{
+        width: 49%;
     }
 </style>
 
