@@ -105,18 +105,23 @@ export default {
         .then(result => {
             this.$root.$data.currentEvent.added_schedules = result.data.addedSchedules
             this.$router.push('/event')
-        })
-   
-      }
+        })  
+    }
   }
 }
 
 </script>
-
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500");
+</style>
 <style>
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
 @import '~@fullcalendar/timegrid/main.css';
+
+html {
+  font-family: 'Roboto', 'sans-serif';
+}
 
 body{
 	background-color: #639DDB;

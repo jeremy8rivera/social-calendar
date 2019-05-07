@@ -77,8 +77,16 @@
 </template>
 
 <style scoped type="text/css">
+    .inputUser {
+        height: 20px;
+        margin-right: -5px;
+    }
+
     button{
         margin-bottom: 5px;
+        margin-right: 5px;
+        width: 120px;
+        height: 27px;
     }
 
     li {
