@@ -1,77 +1,88 @@
 <template>
 
+    <div>
+        <Header></Header>
+        <div class="creationContainer" :key="componentKey">
+            <div class="popOut">
+                <h2>
+                    {{ this.$root.$data.currentEvent.event_name}}
+                </h2>
+                Location: {{ this.$root.$data.currentEvent.event_location}}
+                <br>
+                Users List
+                <li v-for="user in this.$root.$data.currentEvent.event_users">
+                    {{user}}
+                </li>
+                <br>
+                <h3>Add users</h3>
+                <div v-for="(user, index) in this.users">
+                    <input v-model="users[index]">
+                    <button v-on:click="deleteUser(index)">
+                    delete
+                    </button>
+                </div>
 
-<div :key="componentKey">
-<Header></Header>
+                <button v-on:click="addUser()">
+                                New User
+                            </button>
+                <button v-on:click="addUsers()">
+                    Add Users
+                </button>
+                <br>
+                Possible dates
+                <li v-for="date in this.$root.$data.currentEvent.event_dates">
+                    {{date.substring(1, 11)}}
+                </li>
+                <button v-if="this.$root.$data.currentEvent.event_time === 'Time not chosen' && this.$root.$data.currentEvent.event_admin === this.$root.$data.username" v-on:click="chooseTime()">Choose Time</button>
+                <div v-if="this.$root.$data.currentEvent.event_time !== 'Time not chosen'">
+                    Event Time: {{this.$root.$data.currentEvent.event_time  }}
+                </div>
 
-<h2>
-    {{ this.$root.$data.currentEvent.event_name}}
-</h2>
-Location: {{ this.$root.$data.currentEvent.event_location}}
-<br>
-Users List
-<li v-for="user in this.$root.$data.currentEvent.event_users">
-    {{user}}
-</li>
-
-<h3>Add users</h3>
-<div v-for="(user, index) in this.users">
-    <input v-model="users[index]">
-    <button v-on:click="deleteUser(index)">
-    delete
-    </button>
-</div>
-
-<button v-on:click="addUser()">
-                New User
-            </button>
-<button v-on:click="addUsers()">
-    Add Users
-</button>
-<br>
-Possible dates
-<li v-for="date in this.$root.$data.currentEvent.event_dates">
-    {{date.substring(1, 11)}}
-</li>
-<button v-if="this.$root.$data.currentEvent.event_time === 'Time not chosen' && this.$root.$data.currentEvent.event_admin === this.$root.$data.username" v-on:click="chooseTime()">Choose Time</button>
-<div v-if="this.$root.$data.currentEvent.event_time !== 'Time not chosen'">
-    Event Time: {{this.$root.$data.currentEvent.event_time  }}
-</div>
-
-    <table border="2">
-
-
-        <ul id="times">
-        <tr>
-            <td width="75px" height="15px">Time</td>
-            <td width="75px" height="15px">Sunday</td>
-            <td width="75px" height="15px">Monday</td>
-            <td width="75px" height="15px">Tuesday</td>
-            <td width="75px" height="15px">Wednesday</td>
-            <td width="75px" height="15px">Thursday</td>
-            <td width="75px" height="15px">Friday</td>
-            <td width="75px" height="15px">Saturday</td>
-        </tr>
-            <li v-for="(time, index) in this.times">
-                <tr>
-                <td width="75px" height="15px">{{ time }}</td>
-                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(0 + index * 7)}"></td>
-                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(1 + index * 7)}"></td>
-                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(2 + index * 7)}"></td>
-                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(3 + index * 7)}"></td>
-                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(4 + index * 7)}"></td>
-                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(5 + index * 7)}"></td>
-                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(6 + index * 7)}"></td>
-                </tr>
-            </li>
-        </ul>
+                <table border="2">
 
 
-    </table>
+                    <ul id="times">
+                        <tr>
+                            <td width="75px" height="15px">Time</td>
+                            <td width="75px" height="15px">Sunday</td>
+                            <td width="75px" height="15px">Monday</td>
+                            <td width="75px" height="15px">Tuesday</td>
+                            <td width="75px" height="15px">Wednesday</td>
+                            <td width="75px" height="15px">Thursday</td>
+                            <td width="75px" height="15px">Friday</td>
+                            <td width="75px" height="15px">Saturday</td>
+                        </tr>
+                        <li v-for="(time, index) in this.times">
+                            <tr>
+                                <td width="75px" height="15px">{{ time }}</td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(0 + index * 7)}"></td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(1 + index * 7)}"></td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(2 + index * 7)}"></td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(3 + index * 7)}"></td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(4 + index * 7)}"></td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(5 + index * 7)}"></td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(6 + index * 7)}"></td>
+                            </tr>
+                        </li>
+                    </ul>
 
-</div>
+
+                </table>
+            </div>
+        </div>
+    </div>
 
 </template>
+
+<style scoped type="text/css">
+    button{
+        margin-bottom: 5px;
+    }
+
+    li {
+        list-style-type: none;
+    }
+</style>
 
 <script>
 
@@ -85,7 +96,7 @@ export default {
     },
     methods: {
         chooseTime() {
-            
+
         },
         getOpacity(index) {
             var totalUsers = this.$root.$data.currentEvent.event_users.length

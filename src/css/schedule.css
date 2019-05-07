@@ -4,9 +4,14 @@ ul{
 }​
 
 td {
-    width: 100px;
+    width: 20%;
 }
 
 table {
     border: '1';
+    table-layout: fixed;
+}
+
+input[type=checkbox]{
+	transform: scale(1.5);
 }
