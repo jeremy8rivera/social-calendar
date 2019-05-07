@@ -7,28 +7,30 @@
                 <h2>
                     {{ this.$root.$data.currentEvent.event_name}}
                 </h2>
-                Location: {{ this.$root.$data.currentEvent.event_location}}
+                <b>Location:</b> {{ this.$root.$data.currentEvent.event_location}}
                 <br>
-                Users List
-                <li v-for="user in this.$root.$data.currentEvent.event_users">
-                    {{user}}
+                <b>Users List:</b>
+                <li class="userList" v-for="user in this.$root.$data.currentEvent.event_users">
+                    {{user}},
                 </li>
+                <br>
+                <b>Description:</b> {{ this.$root.$data.currentEvent.event_description }}
                 <br>
                 <h3>Add Users</h3>
                 <div class="userChange" v-for="(user, index) in this.users">
-                    <input class="usernameInput" placeholder="Enter Username Here" v-model="users[index]"> <br>
+                    <input class="usernameInput" placeholder="Enter Username Here" v-model="users[index]">
                     <button class="deleteUser" v-on:click="deleteUser(index)">
-                    Delete
+                    X
                     </button>
-                    <button class="addUser" v-on:click="addUser()">
-                                New User
-                            </button>
-                            <br>
-                <button v-on:click="addUsers()">
-                    Add Users
-                </button>
+                    
                 </div>
-
+                <button class="addUser" v-on:click="addUser()">
+                    Add Row
+                </button>
+                <br>
+                <button class="confirmUserChange" v-on:click="addUsers()">
+                    Confirm
+                </button>
                 
                 <br>
                 Possible dates
@@ -92,6 +94,11 @@
     li {
         list-style-type: none;
     }
+
+    .userList{
+        display: inline;
+    }
+
     .addUser {
         background-color: #f9c422;
         font-size: 12px;
@@ -104,10 +111,11 @@
     }
 
     .deleteUser{
-        width: 25%;
+        width: 5%;
         background-color: #dc3545;
         font-size: 12px;
         font-weight: bold;
+        margin-left: 5px;
     }
     .deleteUser:hover{
         background-color: #c91021;
@@ -118,7 +126,11 @@
     }
 
     .usernameInput{
-        width: 49%;
+        width: 30%;
+    }
+
+    .confirmUserChange{
+        width: 30%;
     }
 </style>
 
