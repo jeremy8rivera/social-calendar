@@ -14,24 +14,26 @@
             :disp="['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','', '', '取消', '确定']"></m-date-picker>
             <br>
 
-            <div v-for="(user, index) in users">
+            <div class="userChange">
+            <div class="userInfo" v-for="(user, index) in users">
                 <input v-model="users[index]">
-                <button v-on:click="deleteUser(index)">
-                delete
+                <br/>
+                <button class="deleteUser" v-on:click="deleteUser(index)">
+                Delete User
                 </button>
-            </div>
-  
-            <button v-on:click="addUser()">
-                New User
+                <button class="addUser" v-on:click="addUser()">
+                Add User
             </button>
-            <br>
-  
+            </div>
+        </div>
             <button type="button" v-on:click="createEvent()">Create Event</button>
         </div>
         </div>
 
     </div>
 </template>
+
+
 
 <script>
 
@@ -143,4 +145,32 @@ export default {
 }
 
 
+</style>
+
+<style scoped type="text/css">
+    .addUser {
+        background-color: #f9c422;
+        font-size: 12px;
+        font-weight: bold;
+        width: 50%;
+        margin-bottom: 10px;
+    }
+    .addUser:hover{
+        background-color: #edb407;
+    }
+
+    .deleteUser{
+        width: 50%;
+        background-color: #dc3545;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .deleteUser:hover{
+        background-color: #c91021;
+    }
+
+    .userChange{
+        display: inline-block;
+        margin-bottom: 10px;
+    }
 </style>

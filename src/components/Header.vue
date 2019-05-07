@@ -1,14 +1,14 @@
 <template>
     <div>
         <button class="btn logout" type="button" v-on:click="logout()">Logout</button>
-        
-        <router-link to='dashboard' tag="rl" class='btn'>Dashboard</router-link>
        
-        <router-link to='createevent' tag="rl" class='btn'>Create Event</router-link>
-        
         <router-link to='settings' tag="rl" class='btn'>Settings</router-link>
 
         <router-link to='schedule' tag="rl" class='btn'>Schedule</router-link>
+
+        <router-link to='createevent' tag="rl" class='btn'>Create Event</router-link>
+
+        <router-link to='dashboard' tag="rl" class='btn'>Dashboard</router-link>
     </div>
 </template>
 

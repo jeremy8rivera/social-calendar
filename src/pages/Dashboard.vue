@@ -9,11 +9,12 @@
             <li v-for="(event, index) in this.$root.$data.events">
                 <div class="eventBox">
                     <div class="eventBoxHeaders">
-        		        <h3 class="eventBoxNameDate">{{ event.event_name }} | {{ event.event_time}}</span></h3>
+        		        <h3 class="eventBoxNameDate">{{ event.event_name }}</h3>
         	        </div>
-        		    <p class="eventBoxLocation">{{ event.event_location}}</p>
+                  <p class="eventBoxTime">Date: {{event.event_time}}</p>
+        		    <p class="eventBoxLocation">Location: {{ event.event_location}}</p>
                     <p class="eventBoxLocation">{{ event.event_description}}</p>
-                    <input type="submit" value="Go to event" v-on:click="goToEvent(index)">
+                    <input type="submit" value="Go To Event" v-on:click="goToEvent(index)">
 
                 </div>
             </li>
@@ -40,6 +41,25 @@
 
 </div>
 </template>
+
+<style scoped type="text/css">
+  .eventBox input[type=submit]{
+    margin-top: 5px;
+    background-color: #f9c422;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    width: 100%;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.eventBox input[type=submit]:hover{
+  background-color: #edb407;
+}
+</style>
 
 <script>
 
@@ -170,11 +190,15 @@ ul{
     padding-left: 0;
 }​
 
-
 #eventListContainer h2{
 	border-bottom: 1px solid #d8d8d8;
 	padding-bottom: 20px;
 	margin-bottom: 0px;
+}
+
+#eventListContainer h3{
+  font-size: 16px;
+  padding-left: 3px;
 }
 
 #visualCalendarContainer{
@@ -197,23 +221,29 @@ ul{
 
 .eventBox{
 	border-left: 1px solid black;
-	margin-bottom: 5px;
+  border-right: 1px solid black;
+	margin-bottom: 15px;
+  border-bottom: 1px solid black;
+  border-radius: 5px;
 }
 
 .eventBoxHeaders{
 	background-color: #268fff;
 	color: white;
+  border-radius: 5px 5px 0px 0px;
 }
 
 .eventBoxNameDate{
 	border-bottom: 1px solid black;
 	font-size: 14px;
 	margin: 0px;
+
 }
 
 .eventBox p{
-	font-size: 12px;
+	font-size: 15px;
 	margin: 0;
+  padding-left: 5px;
 }
 
 </style>
