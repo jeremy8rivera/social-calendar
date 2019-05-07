@@ -3,7 +3,7 @@
         <Header></Header>
         <div class="creationContainer">
             <div class="popOut">
-                <h2> Select When Busy </h2>
+                <h2> Select When Available </h2>
                 <table>
                     <tr>
                         <td>Time</td>
