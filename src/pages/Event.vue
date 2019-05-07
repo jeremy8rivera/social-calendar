@@ -16,7 +16,7 @@
                 <br>
                 <h3>Add users</h3>
                 <div v-for="(user, index) in this.users">
-                    <input v-model="users[index]">
+                    <input v-model="users[index]" class="inputUser"> 
                     <button v-on:click="deleteUser(index)">
                     delete
                     </button>
@@ -75,8 +75,16 @@
 </template>
 
 <style scoped type="text/css">
+    .inputUser {
+        height: 20px;
+        margin-right: -5px;
+    }
+
     button{
         margin-bottom: 5px;
+        margin-right: 5px;
+        width: 120px;
+        height: 27px;
     }
 
     li {

@@ -38,12 +38,13 @@
 
 </template>
 
-<style>
-    @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500");
-</style>
 
 <style scoped src="../css/signup.css"></style>
 <!--This is how you add css to Vue -->
+
+<style scoped>
+
+</style>
 
 
 
