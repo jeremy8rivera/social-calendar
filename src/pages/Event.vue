@@ -7,36 +7,39 @@
                 <h2>
                     {{ this.$root.$data.currentEvent.event_name}}
                 </h2>
-                Location: {{ this.$root.$data.currentEvent.event_location}}
+                <b>Location:</b> {{ this.$root.$data.currentEvent.event_location}}
                 <br>
-                Users List
-                <li v-for="user in this.$root.$data.currentEvent.event_users">
-                    {{user}}
+                <b>Users List:</b>
+                <li class="userList" v-for="user in this.$root.$data.currentEvent.event_users">
+                    {{user}},
                 </li>
                 <br>
-                <h3>Add users</h3>
-                <div v-for="(user, index) in this.users">
-                    <input v-model="users[index]">
-                    <button v-on:click="deleteUser(index)">
-                    delete
+                <b>Description:</b> {{ this.$root.$data.currentEvent.event_description }}
+                <br>
+                <h3>Add Users</h3>
+                <div class="userChange" v-for="(user, index) in this.users">
+                    <input class="usernameInput" placeholder="Enter Username Here" v-model="users[index]">
+                    <button class="deleteUser" v-on:click="deleteUser(index)">
+                    X
                     </button>
+                    
                 </div>
-
-                <button v-on:click="addUser()">
-                                New User
-                            </button>
-                <button v-on:click="addUsers()">
-                    Add Users
+                <button class="addUser" v-on:click="addUser()">
+                    Add Row
                 </button>
                 <br>
-                <div v-if="this">
-                    Choose date
+
+                <button class="confirmUserChange" v-on:click="addUsers()">
+                    Confirm
+                </button>
+                <br>
+                <div v-if="this.$root.$data.currentEvent.event_time === 'Time not chosen' && this.$root.$data.currentEvent.event_admin === this.$root.$data.username" >
+                Choose date
                     <li v-for="date in this.$root.$data.currentEvent.event_dates">
                         <input type="radio" v-model="chosenDate" :value="date"> {{date}}<br>
                     </li>
-
-                    <br>
-                    <button v-on:click="chooseTime()">Choose Time</button>
+                <button v-on:click="chooseTime()">Choose Time</button>
+                
                 </div>
                 <div v-if="this.$root.$data.currentEvent.event_time !== 'Time not chosen'">
                     Event Time: {{this.$root.$data.currentEvent.event_time  }}
@@ -77,12 +80,58 @@
 </template>
 
 <style scoped type="text/css">
+    .inputUser {
+        height: 20px;
+        margin-right: -5px;
+    }
+
     button{
         margin-bottom: 5px;
+        margin-right: 5px;
+        width: 120px;
+        height: 27px;
     }
 
     li {
         list-style-type: none;
+    }
+
+    .userList{
+        display: inline;
+    }
+
+    .addUser {
+        background-color: #f9c422;
+        font-size: 12px;
+        font-weight: bold;
+        width: 25%;
+        margin-bottom: 10px;
+    }
+    .addUser:hover{
+        background-color: #edb407;
+    }
+
+    .deleteUser{
+        width: 5%;
+        background-color: #dc3545;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 5px;
+    }
+    .deleteUser:hover{
+        background-color: #c91021;
+    }
+
+    .userChange{
+        margin-bottom: 10px;
+    }
+
+    .usernameInput{
+        width: 30%;
+    }
+
+    .confirmUserChange{
+        width: 30%;
     }
 </style>
 

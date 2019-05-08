@@ -16,16 +16,16 @@
 
             <div class="userChange">
             <div class="userInfo" v-for="(user, index) in users">
-                <input v-model="users[index]">
-                <br/>
+                <input placeholder="Enter Username" v-model="users[index]">
                 <button class="deleteUser" v-on:click="deleteUser(index)">
-                Delete User
+                X
                 </button>
-                <button class="addUser" v-on:click="addUser()">
-                Add User
-            </button>
             </div>
         </div>
+        <button class="addUser" v-on:click="addUser()">
+                Add User
+        </button>
+        <br>
             <button type="button" v-on:click="createEvent()">Create Event</button>
         </div>
         </div>
@@ -160,10 +160,11 @@ export default {
     }
 
     .deleteUser{
-        width: 50%;
+        width: 15%;
         background-color: #dc3545;
         font-size: 12px;
         font-weight: bold;
+        margin-left: 2px;
     }
     .deleteUser:hover{
         background-color: #c91021;
@@ -172,5 +173,8 @@ export default {
     .userChange{
         display: inline-block;
         margin-bottom: 10px;
+    }
+    .userInfo{
+        width: 110%;
     }
 </style>
