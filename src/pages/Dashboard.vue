@@ -83,6 +83,12 @@ export default {
           this.$router.push('/login')
       }
 
+      axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/loadevents/' + this.$root.$data.username } )
+          .then(result => {
+            console.log(result.data.events)
+            this.$root.$data.events = result.data.events
+          })
+
   },
   data: function () {
     return {

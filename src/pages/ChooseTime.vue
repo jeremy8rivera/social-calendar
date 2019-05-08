@@ -25,6 +25,7 @@
 <script>
 
 import Header from '../components/Header'
+import axios from 'axios'
 
 export default {
     name: 'ChooseTime', 
@@ -54,6 +55,19 @@ export default {
             completeTime.setHours(this.timesValue[floorIndex])
             var confirm = window.confirm("Do you want to choose " + completeTime + "?")
             if (confirm) {
+                axios({method: 'GET', 'url':this.$root.$data.backendAddress + '/finalizetime/' + this.$root.$data.currentEvent.event_id + '/' + completeTime.toString()} )
+                .then(result => {
+                    if (result.data.successful) {
+                        axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/loadevents/' + this.$root.$data.username } )
+                        .then(result => {
+                            console.log(result.data.events)
+                            this.$root.$data.events = result.data.events
+                            window.alert("Successfully chose your time")
+                            this.$root.$data.currentEvent.event_time = completeTime
+                            this.$router.go(-1)
+                        })
+                    }
+                })
                 
             }
 
