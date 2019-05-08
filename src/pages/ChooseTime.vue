@@ -12,7 +12,7 @@
                         <li v-for="(time, index) in this.times">
                             <td width="75px" height="15px">{{ time }}</td>
 
-                            <td width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(day + index * 7)}" v-on:click="chooseTime(day + index * 7)"></td>
+                            <td width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(day + index * 7)}" v-on:click="chooseTime(day + index * 7)">{{getNumber(day + index * 7)}}</td>
                         </li>
                     </ul>
                 </table>
@@ -83,6 +83,11 @@ export default {
         },
         cancel() {
             this.$router.go(-1)
+        },
+        getNumber(index) {
+            if (this.$root.$data.currentEvent.added_schedules[index] > 0) {
+                return this.$root.$data.currentEvent.added_schedules[index] + '/' + this.$root.$data.currentEvent.event_users.length
+            }
         }
     },
     components: {

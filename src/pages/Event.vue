@@ -16,7 +16,9 @@
                 <br>
                 <b>Description:</b> {{ this.$root.$data.currentEvent.event_description }}
                 <br>
-                <h3>Add Users</h3>
+                
+                <div v-if="this.$root.$data.currentEvent.event_time === 'Time not chosen' && this.$root.$data.currentEvent.event_admin === this.$root.$data.username" >
+<h3>Add Users</h3>
                 <div class="userChange" v-for="(user, index) in this.users">
                     <input class="usernameInput" placeholder="Enter Username Here" v-model="users[index]">
                     <button class="deleteUser" v-on:click="deleteUser(index)">
@@ -24,8 +26,6 @@
                     </button>
                     
                 </div>
-                <div v-if="this.$root.$data.currentEvent.event_time === 'Time not chosen' && this.$root.$data.currentEvent.event_admin === this.$root.$data.username" >
-
                     <button class="addUser" v-on:click="addUser()">
                         Add Row
                     </button>
@@ -66,13 +66,13 @@
                         <li v-for="(time, index) in this.times">
                             <tr>
                                 <td width="75px" height="15px">{{ time }}</td>
-                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(0 + index * 7)}"></td>
-                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(1 + index * 7)}"></td>
-                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(2 + index * 7)}"></td>
-                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(3 + index * 7)}"></td>
-                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(4 + index * 7)}"></td>
-                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(5 + index * 7)}"></td>
-                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(6 + index * 7)}"></td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(0 + index * 7)}">{{getNumber(0 + index * 7)}}</td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(1 + index * 7)}">{{getNumber(1 + index * 7)}}</td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(2 + index * 7)}">{{getNumber(2 + index * 7)}}</td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(3 + index * 7)}">{{getNumber(3 + index * 7)}}</td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(4 + index * 7)}">{{getNumber(4 + index * 7)}}</td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(5 + index * 7)}">{{getNumber(5 + index * 7)}}</td>
+                                <td  width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(6 + index * 7)}">{{getNumber(6 + index * 7)}}</td>
                             </tr>
                         </li>
                     </ul>
@@ -193,6 +193,11 @@ export default {
             console.log(this.chosenDate)
             this.$root.$data.currentEvent.chosenDate = new Date(this.chosenDate)
             this.$router.push('/choosetime')
+        },
+        getNumber(index) {
+            if (this.$root.$data.currentEvent.added_schedules[index] > 0) {
+                return this.$root.$data.currentEvent.added_schedules[index] + '/' + this.$root.$data.currentEvent.event_users.length
+            }
         }
     },
     data() {
