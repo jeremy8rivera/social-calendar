@@ -32,6 +32,7 @@ export default {
           this.$root.$data.authenticated = false
           this.$root.$data.username = ''
           this.$router.push('/login')
+          this.$root.$data.calendarEvents = []
       }
   }
 }

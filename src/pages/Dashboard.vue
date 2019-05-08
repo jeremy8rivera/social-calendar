@@ -1,6 +1,6 @@
 <template>
 
-<div>
+<div :key="componentKey">
     <Header></Header>
     <div id="eventListContainer" class="test">
         <h2>Events</h2>
@@ -34,7 +34,7 @@
       }"
       :plugins="calendarPlugins"
       :weekends="calendarWeekends"
-      :events="calendarEvents"
+      :events="this.$root.$data.calendarEvents"
       @dateClick="handleDateClick"
       />
     </div>
@@ -87,7 +87,9 @@ export default {
           .then(result => {
             console.log(result.data.events)
             this.$root.$data.events = result.data.events
-          })
+            
+      })
+      
 
   },
   data: function () {
@@ -98,9 +100,7 @@ export default {
         interactionPlugin
         ],
         calendarWeekends: true,
-        calendarEvents: [
-        { title: 'Event Now', start: new Date() }
-        ]
+        componentKey: false
     }
   },
   methods : {

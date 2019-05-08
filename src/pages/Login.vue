@@ -57,8 +57,24 @@ export default {
           .then(result => {
             console.log(result.data.events)
             this.$root.$data.events = result.data.events
+            var completed = 0;
+            for (var i = 0; i < result.data.events.length; i++) {
+              completed+=1
+              if (result.data.events[i].event_time !== 'Time not chosen') {
+                this.$root.$data.calendarEvents.push({title: result.data.events[i].event_name, start: new Date(result.data.events[i].event_time)})
+                if (completed == result.data.events.length) {
+                  this.$router.push('/dashboard')
+
+                } 
+              } else {
+                if (completed == result.data.events.length) {
+                  this.$router.push('/dashboard')
+
+                } 
+              }
+
+            }
           })
-           this.$router.push('/dashboard')
          } else {
            window.alert('Login failed. Please try again')
          }
