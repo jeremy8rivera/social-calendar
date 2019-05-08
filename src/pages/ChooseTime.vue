@@ -1,26 +1,35 @@
 <template>
-<div>
-    <Header></Header>
-    Chosen date: {{this.$root.$data.currentEvent.chosenDate}}
-    <br>
-    <table border="2">
-        <ul id="times">
-            <td width="75px" height="15px"></td>
-            <td width="75px" height="15px">{{days[this.day]}}</td>
-            <li v-for="(time, index) in this.times">
-                <td width="75px" height="15px">{{ time }}</td>
+    <div>
+        <Header></Header>
+        <div class="creationContainer">
+            <div class="popOut">
+                <h2>Chosen date: {{this.$root.$data.currentEvent.chosenDate}}</h2>
+                <br>
+                <table border="2">
+                    <ul id="times">
+                        <td width="75px" height="15px"></td>
+                        <td width="75px" height="15px">{{days[this.day]}}</td>
+                        <li v-for="(time, index) in this.times">
+                            <td width="75px" height="15px">{{ time }}</td>
 
-                <td width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(day + index * 7)}" v-on:click="chooseTime(day + index * 7)"></td>
-            </li>
-        </ul>
-    </table>
-    <button v-on:click="cancel()">
-        Cancel
-    </button>
-
-</div>
+                            <td width="75px" height="15px" style="background-color:orange" v-bind:style="{opacity: getOpacity(day + index * 7)}" v-on:click="chooseTime(day + index * 7)"></td>
+                        </li>
+                    </ul>
+                </table>
+                <button v-on:click="cancel()">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
 </template>
 
+<style scoped type="text/css">
+    .popOut table{
+        font-size: 18px;
+        margin: 0 auto;
+    }
+</style>
 
 <script>
 
