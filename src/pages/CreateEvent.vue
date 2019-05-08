@@ -23,7 +23,7 @@
             </div>
         </div>
         <button class="addUser" v-on:click="addUser()">
-                Add User
+                Add Row
         </button>
         <br>
             <button type="button" v-on:click="createEvent()">Create Event</button>
@@ -152,7 +152,7 @@ export default {
         background-color: #f9c422;
         font-size: 12px;
         font-weight: bold;
-        width: 50%;
+        width: 40%;
         margin-bottom: 10px;
     }
     .addUser:hover{
