@@ -1,7 +1,7 @@
-# social_calendar
+# Social Calendar
 
-## Dashboard Updates Only. Testing Specific Package interactions
-Current [fullCalender](https://fullcalendar.io/)
+[Backend Code](https://github.com/Jaewan-Kim/social_calendar_backend)
+
 
 ## Project setup
 ```
