@@ -56,7 +56,7 @@ export default {
             var usersStr = this.users.join()
             console.log(usersStr)
             axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/createevent/' 
-            + this.event_name + '/' + this.$root.$data.username + '/' + JSON.stringify(this.dates)
+            + this.event_name + '/' + this.$root.$data.username + '/' + this.dates.toString()
             + '/' + this.event_location + '/' + this.event_description + '/' + usersStr } )
             .then(result => {
                 console.log(result)

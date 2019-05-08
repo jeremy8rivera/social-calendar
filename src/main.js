@@ -15,6 +15,7 @@ new Vue({
     name: '',
     backendAddress: 'http://localhost:3000',
     events: [],
-    currentEvent: null
+    currentEvent: null,
+    calendarEvents: []
   }
 }).$mount('#app')

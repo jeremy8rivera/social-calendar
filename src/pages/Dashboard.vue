@@ -1,6 +1,6 @@
 <template>
 
-<div>
+<div :key="componentKey">
     <Header></Header>
     <div id="eventListContainer" class="test">
         <h2>Events</h2>
@@ -34,7 +34,7 @@
       }"
       :plugins="calendarPlugins"
       :weekends="calendarWeekends"
-      :events="calendarEvents"
+      :events="this.$root.$data.calendarEvents"
       @dateClick="handleDateClick"
       />
     </div>
@@ -83,6 +83,14 @@ export default {
           this.$router.push('/login')
       }
 
+      axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/loadevents/' + this.$root.$data.username } )
+          .then(result => {
+            console.log(result.data.events)
+            this.$root.$data.events = result.data.events
+            
+      })
+      
+
   },
   data: function () {
     return {
@@ -92,9 +100,7 @@ export default {
         interactionPlugin
         ],
         calendarWeekends: true,
-        calendarEvents: [
-        { title: 'Event Now', start: new Date() }
-        ]
+        componentKey: false
     }
   },
   methods : {

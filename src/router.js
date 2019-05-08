@@ -8,6 +8,7 @@ import Settings from './pages/Settings.vue'
 import CreateEvent from './pages/CreateEvent.vue'
 import Schedule from './pages/Schedule.vue'
 import Event from './pages/Event.vue'
+import ChooseTime from './pages/ChooseTime.vue'
 
 Vue.use(Router)
 
@@ -48,11 +49,16 @@ export default new Router({
       path: '/schedule',
       name: 'schedule',
       component: Schedule
-    }, 
+    },
     {
       path: '/event',
       name: 'event',
       component: Event
+    },
+    {
+      path: '/choosetime',
+      name: 'choosetime',
+      component: ChooseTime
     }
   ]
 })
