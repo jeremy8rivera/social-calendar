@@ -29,11 +29,15 @@
                     Add Users
                 </button>
                 <br>
-                Possible dates
-                <li v-for="date in this.$root.$data.currentEvent.event_dates">
-                    {{date.substring(1, 11)}}
-                </li>
-                <button v-if="this.$root.$data.currentEvent.event_time === 'Time not chosen' && this.$root.$data.currentEvent.event_admin === this.$root.$data.username" v-on:click="chooseTime()">Choose Time</button>
+                <div v-if="this">
+                    Choose date
+                    <li v-for="date in this.$root.$data.currentEvent.event_dates">
+                        <input type="radio" v-model="chosenDate" :value="date"> {{date}}<br>
+                    </li>
+
+                    <br>
+                    <button v-on:click="chooseTime()">Choose Time</button>
+                </div>
                 <div v-if="this.$root.$data.currentEvent.event_time !== 'Time not chosen'">
                     Event Time: {{this.$root.$data.currentEvent.event_time  }}
                 </div>
@@ -65,8 +69,6 @@
                             </tr>
                         </li>
                     </ul>
-
-
                 </table>
             </div>
         </div>
@@ -95,9 +97,6 @@ export default {
         Header
     },
     methods: {
-        chooseTime() {
-
-        },
         getOpacity(index) {
             var totalUsers = this.$root.$data.currentEvent.event_users.length
             var opacity = this.$root.$data.currentEvent.added_schedules[index] / totalUsers
@@ -136,6 +135,11 @@ export default {
                     window.alert("Failed to add new users")
                 }
             })
+        },
+        chooseTime() {
+            console.log(this.chosenDate)
+            this.$root.$data.currentEvent.chosenDate = new Date(this.chosenDate)
+            this.$router.push('/choosetime')
         }
     },
     data() {
@@ -143,8 +147,8 @@ export default {
             times: ['9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM'],
             scheduleColor: 'orange',
             users: [''],
-            componentKey: false
-
+            componentKey: false,
+            chosenDate: ''
         }
     }, 
     beforeMount () {
