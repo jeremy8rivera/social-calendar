@@ -24,17 +24,18 @@
                     </button>
                     
                 </div>
-                <button class="addUser" v-on:click="addUser()">
-                    Add Row
-                </button>
-                <br>
-
-                <button class="confirmUserChange" v-on:click="addUsers()">
-                    Confirm
-                </button>
-                <br>
                 <div v-if="this.$root.$data.currentEvent.event_time === 'Time not chosen' && this.$root.$data.currentEvent.event_admin === this.$root.$data.username" >
-                Choose date
+
+                    <button class="addUser" v-on:click="addUser()">
+                        Add Row
+                    </button>
+                    <br>
+
+                    <button class="confirmUserChange" v-on:click="addUsers()">
+                        Confirm
+                    </button>
+                    <br>
+                    Choose date
                     <li v-for="date in this.$root.$data.currentEvent.event_dates">
                         <input type="radio" v-model="chosenDate" :value="date"> {{date}}<br>
                     </li>
@@ -43,8 +44,11 @@
                 </div>
                 <div v-if="this.$root.$data.currentEvent.event_time !== 'Time not chosen'">
                     Event Time: {{this.$root.$data.currentEvent.event_time  }}
+                </div>                
+                <div v-if="this.$root.$data.currentEvent.event_time === 'Time not chosen'">
+                    {{this.$root.$data.currentEvent.event_time + " yet"}}
                 </div>
-
+                <br>
                 <table border="2">
 
 
