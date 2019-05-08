@@ -42,25 +42,31 @@ export default {
 
           axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/loadevents/' + this.$root.$data.username } )
           .then(result => {
-            console.log(result.data.events)
-            this.$root.$data.events = result.data.events
-            var completed = 0;
-            for (var i = 0; i < result.data.events.length; i++) {
-              completed+=1
-              if (result.data.events[i].event_time !== 'Time not chosen') {
-                this.$root.$data.calendarEvents.push({title: result.data.events[i].event_name, start: new Date(result.data.events[i].event_time)})
-                if (completed == result.data.events.length) {
-                  this.$router.push('/dashboard')
-
-                } 
+              console.log(result)
+              if (result.data.message === 'no events found') {
+                this.$root.$data.events = result.data.events
+                this.$router.push('/dashboard')
               } else {
-                if (completed == result.data.events.length) {
-                  this.$router.push('/dashboard')
+                this.$root.$data.events = result.data.events
+                var completed = 0;
+                for (var i = 0; i < result.data.events.length; i++) {
+                completed+=1
+                if (result.data.events[i].event_time !== 'Time not chosen') {
+                    this.$root.$data.calendarEvents.push({title: result.data.events[i].event_name, start: new Date(result.data.events[i].event_time)})
+                    if (completed == result.data.events.length) {
+                    this.$router.push('/dashboard')
 
-                } 
+                    } 
+                } else {
+                    if (completed == result.data.events.length) {
+                    this.$router.push('/dashboard')
+
+                    } 
+                }
+
+                }
               }
-
-            }
+            
           })
       }
   }

@@ -42,6 +42,12 @@ export default {
     }
   },
   methods: {
+    isEmpty(obj) {
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) return false;
+      }
+      return true;
+    },
     login() {
 
       axios({ method: 'GET', 'url': this.$root.$data.backendAddress + '/login/' + this.username.toLowerCase() + '/' + sha1(this.password)})
@@ -55,7 +61,11 @@ export default {
            this.$root.$data.events = new Object()
           axios( { method: 'GET', 'url': this.$root.$data.backendAddress + '/loadevents/' + this.$root.$data.username } )
           .then(result => {
-            console.log(result.data.events)
+            if (this.isEmpty(result.data.events)) {
+              console.log("here")
+              this.$router.push('/dashboard')
+            } else {
+              console.log(result.data.events)
             this.$root.$data.events = result.data.events
             var completed = 0;
             for (var i = 0; i < result.data.events.length; i++) {
@@ -74,6 +84,8 @@ export default {
               }
 
             }
+            }
+            
           })
          } else {
            window.alert('Login failed. Please try again')
